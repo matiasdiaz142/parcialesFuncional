@@ -36,8 +36,8 @@ type Impuesto = Envio -> Float
 type Cargo = Envio -> Envio
 
 --2a
---cargoCategorico categoria porcentaje envio = Envio{precio = precio envio + v}
---    where v = valorSegun (elem categoria (categorias)) ((*porcentaje).(/100).precio)
+--cargoCategorico categoria porcentaje envio = Envio{precio = precio envio + valor}
+--    where valor = valorSegun (elem categoria (categorias)) ((*porcentaje).(/100).precio) envio
 
 --cargoTecnologico = cargoCategorico "Tecnologia" 18
 
@@ -60,3 +60,11 @@ enviosDeCategorias categorias' envios = filter (flip all categorias'.flip elem.c
 precioFinal cargos envio = aplicarImpuestos $ foldl (flip ($)) envio cargos
 
 aplicarImpuestos envio = foldl (\total impuesto -> total + impuesto envio)(precio envio) (impuestos envio)
+--7
+--masDoloroso envio cargos = fold1 condicion1 cargos
+-- where condicion1 a b
+--          | precioFinal [a] envio > precioFinal [b] envio = a
+--          | otherwise = b
+--8
+whatever :: (Eq a) => a -> (b -> a) -> (a -> [b] -> c) -> [b] -> c
+whatever a b c = c a . filter ((a==) . b)
