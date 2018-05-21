@@ -43,7 +43,7 @@ domina' robot1 robot2 = all ((== nombre robot1).nombre.uncurry elMasRapido) [(ro
 --5b
 losDominaATodos robot listaRobots = all (domina robot) listaRobots
 --6a
-
+quienesCumplen condicion = map nombre.filter condicion
 --6b
 
 --7
